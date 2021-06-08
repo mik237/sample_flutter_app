@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Text('My First App'),
+      home: Text("Sample Flutter App"),
     );
   }
 }
