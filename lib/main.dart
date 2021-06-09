@@ -8,15 +8,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  
-  var questionIndex = 0;
+
+  var _questionIndex = 0;
   var questions = [
     'what\'s your favorite color?',
     'what\'s your favorite animal?',
   ];
   void answerQuestions() {
     setState(() {
-      questionIndex = questionIndex + 1;
+      _questionIndex = _questionIndex + 1;
     });
   }
 
@@ -29,7 +29,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: Column(
           children: [
-            Text(questions[questionIndex]),
+            Text(questions[_questionIndex]),
             RaisedButton(
               onPressed: answerQuestions,
               child: Text('Answer 1'),
