@@ -10,6 +10,7 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("First App"),
         ),
+        body: Text('This is body of the app'),
       ),
     );
   }
