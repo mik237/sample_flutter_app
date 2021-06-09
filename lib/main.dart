@@ -10,7 +10,23 @@ class MyApp extends StatelessWidget {
         appBar: AppBar(
           title: Text("First App"),
         ),
-        body: Text('This is body of the app'),
+        body: Column(
+          children: [
+            Text('The questions!'),
+            RaisedButton(
+              onPressed: null,
+              child: Text('Answer 1'),
+            ),
+            RaisedButton(
+              onPressed: null,
+              child: Text('Answer 2'),
+            ),
+            RaisedButton(
+              onPressed: null,
+              child: Text('Answer 3'),
+            )
+          ],
+        ),
       ),
     );
   }
