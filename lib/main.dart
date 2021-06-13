@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/answer.dart';
+import 'package:flutter_app/quiz.dart';
+import 'package:flutter_app/result.dart';
 
 import './question.dart';
 
@@ -57,28 +59,12 @@ class _MyAppState extends State<MyApp> {
           title: Text("First App"),
         ),
         body: _questionIndex < questions.length
-            ? Column(
-                children: [
-                  Question(
-                    questions[_questionIndex]['questionText'] as String,
-                  ),
-                  ...(questions[_questionIndex]['answers'] as List<
-                          String>) // ... operator will extract items from nested list
-                      //     and insert in outer list to make a plan list.
-                      .map(
-                        (answer) => Answer(
-                          answerQuestions,
-                          answer,
-                        ),
-                      )
-                      .toList(),
-                ],
+            ? Quiz(
+                questions: questions,
+                questionIndex: _questionIndex,
+                answerQuestions: answerQuestions,
               )
-            : Center(
-                child: Text(
-                  'You did it!',
-                ),
-              ),
+            : Result(),
       ),
     );
   }
