@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  final questions = const[
+  final questions = const [
     {
       'questionText': 'What\'s your favorite color?',
       'answers': [
@@ -56,22 +56,29 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: Text("First App"),
         ),
-        body: Column(
-          children: [
-            Question(
-              questions[_questionIndex]['questionText'] as String,
-            ),
-            ...(questions[_questionIndex]['answers'] as List<String>)   // ... operator will extract items from nested list 
-                                                                        //     and insert in outer list to make a plan list.
-                .map(
-                  (answer) => Answer(
-                    answerQuestions,
-                    answer,
+        body: _questionIndex < questions.length
+            ? Column(
+                children: [
+                  Question(
+                    questions[_questionIndex]['questionText'] as String,
                   ),
-                )
-                .toList(),
-          ],
-        ),
+                  ...(questions[_questionIndex]['answers'] as List<
+                          String>) // ... operator will extract items from nested list
+                      //     and insert in outer list to make a plan list.
+                      .map(
+                        (answer) => Answer(
+                          answerQuestions,
+                          answer,
+                        ),
+                      )
+                      .toList(),
+                ],
+              )
+            : Center(
+                child: Text(
+                  'You did it!',
+                ),
+              ),
       ),
     );
   }
