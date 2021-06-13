@@ -12,10 +12,37 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+
   var questions = [
-    'what\'s your favorite color?',
-    'what\'s your favorite animal?',
+    {
+      'questionText': 'What\'s your favorite color?',
+      'answers': [
+        'Red',
+        'Blue',
+        'White',
+        'Green',
+      ],
+    },
+    {
+      'questionText': 'What\'s your favorite animal?',
+      'answers': [
+        'Rabbit',
+        'Dog',
+        'Cat',
+        'Parrot',
+      ],
+    },
+    {
+      'questionText': 'Who\'s your favorite instructor?',
+      'answers': [
+        'Mr. A',
+        'Mr. B',
+        'Mr. C',
+        'Mr. D',
+      ],
+    },
   ];
+
   void answerQuestions() {
     setState(() {
       _questionIndex = _questionIndex + 1;
@@ -32,17 +59,17 @@ class _MyAppState extends State<MyApp> {
         body: Column(
           children: [
             Question(
-              questions[_questionIndex],
+              questions[_questionIndex]['questionText'] as String,
             ),
-            Answer(
-              answerQuestions,
-            ),
-            Answer(
-              answerQuestions,
-            ),
-            Answer(
-              answerQuestions,
-            ),
+            ...(questions[_questionIndex]['answers'] as List<String>)   // ... operator will extract items from nested list 
+                                                                        //     and insert in outer list to make a plan list.
+                .map(
+                  (answer) => Answer(
+                    answerQuestions,
+                    answer,
+                  ),
+                )
+                .toList(),
           ],
         ),
       ),
