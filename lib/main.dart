@@ -13,7 +13,7 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
 
-  var questions = [
+  final questions = const[
     {
       'questionText': 'What\'s your favorite color?',
       'answers': [
