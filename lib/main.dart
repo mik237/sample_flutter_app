@@ -14,38 +14,40 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   var _questionIndex = 0;
+  var _totalScore = 0;
 
   final questions = const [
     {
       'questionText': 'What\'s your favorite color?',
       'answers': [
-        'Red',
-        'Blue',
-        'White',
-        'Green',
+        {'text': 'Red', 'score': 10},
+        {'text': 'Blue', 'score': 7},
+        {'text': 'White', 'score': 1},
+        {'text': 'Green', 'score': 4},
       ],
     },
     {
       'questionText': 'What\'s your favorite animal?',
       'answers': [
-        'Rabbit',
-        'Dog',
-        'Cat',
-        'Parrot',
+        {'text': 'Rabbit', 'score': 6},
+        {'text': 'Dog', 'score': 10},
+        {'text': 'Cat', 'score': 1},
+        {'text': 'Parrot', 'score': 3},
       ],
     },
     {
       'questionText': 'Who\'s your favorite instructor?',
       'answers': [
-        'Mr. A',
-        'Mr. B',
-        'Mr. C',
-        'Mr. D',
+        {'text': 'Mr. A', 'score': 10},
+        {'text': 'Mr. B', 'score': 7},
+        {'text': 'Mr. C', 'score': 4},
+        {'text': 'Mr. D', 'score': 1},
       ],
     },
   ];
 
-  void answerQuestions() {
+  void _answerQuestions(int score) {
+    _totalScore += score;
     setState(() {
       _questionIndex = _questionIndex + 1;
     });
@@ -56,15 +58,15 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text("First App"),
+          title: Text("Quiz App"),
         ),
         body: _questionIndex < questions.length
             ? Quiz(
                 questions: questions,
                 questionIndex: _questionIndex,
-                answerQuestions: answerQuestions,
+                answerQuestions: _answerQuestions,
               )
-            : Result(),
+            : Result(_totalScore),
       ),
     );
   }
