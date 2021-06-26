@@ -22,14 +22,15 @@ class Quiz extends StatelessWidget {
         ),
         // ... operator will extract items from nested list
         //     and insert in outer list to make a plan list.
+        //     e.g here list of Answer widgets is placed in the
+        //     surrounding list passed to Column widget.
         ...(questions[questionIndex]['answers'] as List<Map<String, Object>>)
             .map(
               (answer) => Answer(
                 () => answerQuestions(answer['score']),
                 answer['text'] as String,
               ),
-            )
-            .toList(),
+            ).toList(),
       ],
     );
   }
